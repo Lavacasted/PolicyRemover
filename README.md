@@ -23,3 +23,7 @@ Drop a bomb ;)
 
 What i want to add:
 WIP
+
+# Troubleshooting & Issues
+
+Make an issue [here](https://github.com/Lavacasted/OpenLARP/issues)
