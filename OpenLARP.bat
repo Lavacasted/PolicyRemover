@@ -1,8 +1,8 @@
 @ECHO off
 cls
 :start
-title OpenLARP
-echo OpenLARP by Lavacasted
+title PolicyRemover
+echo PolicyRemover by Lavacasted
 start https://github.com/Lavacasted/OpenLARP/README.md
 ECHO.
 ECHO Oh damn, that's a nice-ass GUI, wonder what features we have here
@@ -20,15 +20,33 @@ ECHO "%choice%" is not valid, try again
 ECHO.
 goto start
 :chrome
-reg del HKEY_CURRENT_USER\Software\Google\Chrome
-reg del HKEY_CURRENT_USER\Software\Policies\Google\Chrome
-reg del HKEY_LOCAL_MACHINE\Software\Google\Chrome
-reg del HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome
-reg del HKEY_LOCAL_MACHINE\Software\Policies\Google\Update
-reg del HKEY_LOCAL_MACHINE\Software\WOW6432Node\Google\Enrollment
-ECHO Chrome browser cleaned
-ECHO Warn: If browser still functions as normal, open an issue on our GitHub page
-goto end
+@echo off
+
+IF NOT EXIST %WINDIR%\System32\GroupPolicy goto next
+
+echo Deleting GroupPolicy folder...
+RD /S /Q "%WINDIR%\System32\GroupPolicy" || goto error
+echo.
+
+:next
+IF NOT EXIST %WINDIR%\System32\GroupPolicyUsers goto next2
+
+echo Deleting GroupPolicyUsers folder...
+RD /S /Q "%WINDIR%\System32\GroupPolicyUsers" || goto error
+echo.
+
+:next2
+gpupdate /force
+
+pause
+exit
+
+:error
+echo.
+echo WARN: Run this program with an account with administrative privs.
+echo.
+pause
+exit
 :dlete
 ECHO Attempting to delete restrictive software
 reg del H:\minkernel\ntos\io\pnpmgr\adm\dmaguard.admx
@@ -41,5 +59,5 @@ start https://www.youtube.com/watch?v=DBLnOlzowYY
 ECHO enjoy the music ;)
 goto end
 :end
-ECHO Made for karmasick and a few others
+ECHO Thank you for using PolicyRemover.
 pause
