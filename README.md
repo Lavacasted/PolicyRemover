@@ -12,14 +12,11 @@ So I created OpenLARP.
 1. Download the latest [release](https://github.com/Lavacasted/OpenLARP/releases)
 2. Run the file **with administrative privileges**
 3. Choose your option
-4. Pesto?
+4. Profit
 
 ## Features I added, or want to add
 
-Added:
-Chrome Organisation Policy Remover
-Restrictive Software Remover
-Drop a bomb ;)
+Oh yeah, I finally added some actually good code that removes your chrome policies. (Requires administrative privs)
 
 What i want to add:
 WIP
